@@ -1,0 +1,13 @@
+
+[ClassVersion("1.0.0.0"), FriendlyName("cSteamCmdWorkshop")]
+class cSteamCmdWorkshop : OMI_BaseResource
+{
+    [Required] String SteamCMDPath;
+    [Key] String AppId;
+    [Required] String WorkshopItemId[];
+    [Write] String AppInstallPath;
+    [Write] String Username;
+    [Write] String Password;
+    [Write, ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String Ensure;
+};
+
