@@ -15,7 +15,8 @@ function Get-TargetResource {
         [System.String[]]
         $WorkshopItemId
     )
-    
+
+    @{ }
 }
 
 function Set-TargetResource {
@@ -70,7 +71,7 @@ function Set-TargetResource {
         $steamCmdArguments += @("+force_install_dir", "`"$AppInstallPath`"")
     }
 
-    foreach($workshopItem in $workshopItemId) {
+    foreach ($workshopItem in $workshopItemId) {
         $steamCmdArguments += @("+workshop_download_item", $AppId, $workshopItem)
     }
 
@@ -83,7 +84,7 @@ function Set-TargetResource {
         Return
     }
     
-    Write-Verbose "Executing $steamCmdExecutable with arguments $($steamCmdArguments | Where-Object {$_ -ne $Password})"
+    Write-Verbose "Executing $steamCmdExecutable with arguments $($steamCmdArguments | Where-Object {$_ -ne `"$Password`"})"
     Start-Process $steamCmdExecutable -ArgumentList $steamCmdArguments -NoNewWindow -Wait
 }
 
